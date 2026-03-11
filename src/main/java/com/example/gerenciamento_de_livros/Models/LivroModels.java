@@ -3,13 +3,15 @@ package com.example.gerenciamento_de_livros.Models;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "livro")
+@Table(name = "tb_livro")
 public class LivroModels {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(name = "tituloLivro")
     private String titulo;
+    @Column(name = "nomeAutor")
     private String autor;
     private Integer anoPublicacao;
 

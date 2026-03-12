@@ -5,8 +5,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
-import java.util.Set;
 
 @Service
 public class LivroService {
@@ -22,18 +20,18 @@ public class LivroService {
         return livroRepository.findAll();
     }
 
-    public Optional<LivroModels> buscarId(Long id){
-        return livroRepository.findById(id);
+    public LivroModels buscarId(Long id){
+        return livroRepository.findById(id).orElse(null);
     }
 
     public void deletar(Long id){
         livroRepository.deleteById(id);
     }
 
-    public void atulizar(Long id, LivroModels livroModels){
-       LivroModels novoLivro = livroRepository.findById(id).get();
+    public LivroModels atulizar(Long id, LivroModels livroModels){
+       LivroModels novoLivro = livroRepository.findById(id).orElse(null);
        novoLivro.setTitulo(livroModels.getTitulo());
-       livroRepository.save(novoLivro);
+       return livroRepository.save(novoLivro);
     }
 
 }
